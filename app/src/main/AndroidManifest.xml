@@ -1,0 +1,51 @@
+
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Read local music files -->
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_AUDIO" />
+
+    <!-- Background media playback -->
+    <uses-permission
+        android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <uses-permission
+        android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+
+    <application
+        android:allowBackup="true"
+        android:label="MyMusicPlayer"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyMusicPlayer">
+
+        <!-- Background music playback service -->
+        <service
+            android:name=".MusicPlaybackService"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback">
+
+            <intent-filter>
+                <action
+                    android:name="androidx.media3.session.MediaSessionService" />
+            </intent-filter>
+
+        </service>
+
+        <!-- Main application screen -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category
+                    android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+    </application>
+
+</manifest>
